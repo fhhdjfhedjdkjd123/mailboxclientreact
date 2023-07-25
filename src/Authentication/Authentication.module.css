@@ -38,14 +38,14 @@
     background-color: rgb(206, 192, 192);
 }
 .child1 button{
-    margin-top: 30px;
+    margin-top: 25px;
     margin-left: 40%;
     color:white;
     background-color: blue;
     border:0px solid white;
     border-radius: 5px;
-    width:55px;
-    height: 30px;
+    width:65px;
+    height: 35px;
 }
 .child2{
     margin-right: 50%;
@@ -55,8 +55,9 @@
     background-color: slategrey;
     border:0px solid white;
     border-radius: 5px;
-    width:100px;
-    height: 30px;
+    width:120px;
+    height: 35px;
+    margin-top: 5px;
 
 }
 .child1 h1{
