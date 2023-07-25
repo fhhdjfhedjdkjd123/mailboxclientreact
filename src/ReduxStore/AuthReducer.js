@@ -10,8 +10,8 @@ const AuthReducer=createSlice({
     reducers:{
         login(state){
             state.isAuthenticate=true;
-        }
+        },
     }
 })
-export const AuthAction=AuthReducer.actions;
+export const AuthActions=AuthReducer.actions;
 export default AuthReducer.reducer;

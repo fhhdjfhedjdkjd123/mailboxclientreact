@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import classes from './Authentication.module.css';
 import { useDispatch } from 'react-redux';
-import { AuthAction } from '../ReduxStore/AuthReducer';
+import { AuthActions } from '../ReduxStore/AuthReducer';
 
 
 
@@ -29,9 +29,6 @@ const Authentication=()=>{
 
     let url;
     const auth=async()=>{
-        if(password !== confirmPassword){
-            return alert("Password doesn't match");
-        }
         if(login){
             url='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyApRv7NyYpPTQo8HUNBZ8uM6MkMkMlq_Y4';
         }else{
@@ -55,8 +52,8 @@ const Authentication=()=>{
             if(!response.ok){
                 return alert(data.error.message);
             }
-            alert("User has successfully signedup");
-           dispatch(AuthAction.login());
+            alert("User has successfully Signed Up");
+            dispatch(AuthActions.login());
             localStorage.setItem('email',email);
         }
         catch(error){
@@ -64,27 +61,30 @@ const Authentication=()=>{
         }
 
     }
-
-
     const submitHandler=(e)=>{
         e.preventDefault();
         console.log(email,password,confirmPassword);
-        auth();
-        
+        if(!login){
+            if(password !== confirmPassword){
+                return alert("Password doesn't match");
+            }
+        }
+
+        auth(); 
     }
     return(
         <div className={classes.parent}>
 
         <div className={classes.container}>
             <form onSubmit={submitHandler} className={classes.child1}>
-                <h1>{login ?'login':'SignUp'}</h1>
+                <h1>{login ?'Login':'SignUp'}</h1>
                 <div className={classes.input}>
                     <input type="email" placeholder='Email' value={email} onChange={emailHandler} required/>
                     <input type="password" placeholder='Password' value={password} onChange={passwordHandler} required/>
-                    <input type="password"placeholder='Confirm Password' value={confirmPassword} onChange={confirmPasswordHandler} required/>
+                    {!login && <input type="password"placeholder='Confirm Password' value={confirmPassword} onChange={confirmPasswordHandler} required/>}
                 </div>
                 <button type="submit" class="btn btn-secondary" >
-                   {login ? 'login' : 'signUp'}
+                   {login ? 'Login' : 'SignUp'}
                 </button>
             </form>
         </div>
