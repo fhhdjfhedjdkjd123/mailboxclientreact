@@ -63,7 +63,7 @@ const Authentication=()=>{
     }
     const submitHandler=(e)=>{
         e.preventDefault();
-        console.log(email,password,confirmPassword);
+        console.log(email,password);
         if(!login){
             if(password !== confirmPassword){
                 return alert("Password doesn't match");

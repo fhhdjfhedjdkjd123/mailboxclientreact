@@ -1,8 +1,10 @@
 import { EditorState } from "draft-js";
 import React,{useState} from 'react';
+import { Button } from "react-bootstrap";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import classes from './ComposeMail.module.css';
+import SideBar from "./SideBar";
 
 
 const ComposeMail=()=>{
@@ -79,6 +81,9 @@ const ComposeMail=()=>{
     }
     return(
     <div className={classes.container}>
+        <div className={classes.sidebar}>
+            <SideBar/>
+        </div>
         <div className={classes.parent}>
             <div className={classes.child1}>
               <div>To: </div>
@@ -94,7 +99,7 @@ const ComposeMail=()=>{
                 onEditorStateChange={EditorStateChangeHandler}
               />
             </div>
-            <button type="button" className="btn btn-primary" onClick={submitHandler}>Send</button>
+            <Button type="button" variant="primary" onClick={submitHandler}>Send</Button>
         </div>
     </div>
   
