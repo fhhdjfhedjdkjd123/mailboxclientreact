@@ -7,6 +7,12 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './ReduxStore';
 
+
+//React Bootstrap Configurarion
+import "../node_modules/react-bootstrap/dist/react-bootstrap";
+import "../node_modules/bootstrap/dist/css/bootstrap.css";
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter> 
