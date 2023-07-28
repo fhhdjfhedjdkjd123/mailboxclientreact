@@ -7,11 +7,11 @@ const initialState={
     getReq:true
 }
 const InboxReducer=createSlice({
-    name:"Inbox",
+    name:"inBox",
     initialState:initialState,
     reducers:{
         updateGet(state){
-            state.getReq=!state.getReq;
+            state.getReq=!state.getReq
         },
         changeInbox(state,actions){
             state.inboxData=actions.payload

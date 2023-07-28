@@ -11,6 +11,11 @@ const AuthReducer=createSlice({
         login(state){
             state.isAuthenticate=true;
         },
+        logout(state){
+            state.isAuthenticate=false
+            localStorage.clear()
+        }
+
     }
 })
 export const AuthActions=AuthReducer.actions;
