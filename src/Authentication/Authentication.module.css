@@ -14,9 +14,8 @@
 .container{
     display: flex;
     flex-direction: column;
-    
-    width: 400px;
-    height:350px;
+    /* width: 400px;
+    height:350px; */
     margin-right: 50%;
     
 }
@@ -37,28 +36,9 @@
     border:none;
     background-color: rgb(206, 192, 192);
 }
-.child1 button{
-    margin-top: 25px;
-    margin-left: 40%;
-    color:white;
-    background-color: blue;
-    border:0px solid white;
-    border-radius: 5px;
-    width:65px;
-    height: 35px;
-}
 .child2{
     margin-right: 50%;
-}
-.child2 button{
-    color:white;
-    background-color: slategrey;
-    border:0px solid white;
-    border-radius: 5px;
-    width:120px;
-    height: 35px;
-    margin-top: 5px;
-
+    height:40px;
 }
 .child1 h1{
     color:white;

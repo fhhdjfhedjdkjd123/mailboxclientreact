@@ -6,15 +6,27 @@ import classes from "./InboxMsg.module.css";
 
 const InboxMsg = () => {
   const { Identifier } = useParams();
+  //console.log(Identifier);
   const arrayData = useSelector((state) => state.inboxReducer.inboxData);
   const Msg = arrayData.filter((msg) => msg.id === Identifier);
-  console.log(arrayData);
+  //console.log(arrayData);
   const singlemsg = Msg[0].message;
 
   const user=Msg[0].from;
 
-  let url='https://mailboxclient-2de1d-default-rtdb.firebaseio.com/';
+
+  // const {Identifier}=useParams()
+  // const dataSentbox=useSelector(state=>state.sentBoxReducer.dataSentbox)
+  // const singleMessage=dataSentbox.filter((msg)=>msg.id===Identifier)
+  // const Msg=singleMessage[0].message
+
+  // const user=singleMessage[0].to
+
+
+
+  let url='https://mailboxclient-2de1d-default-rtdb.firebaseio.com';
   const receiver1 = localStorage.getItem("email").replace(/['@','.']/g, "");
+  //const receiver = localStorage.getItem("receiver").replace(/['@','.']/g, ""); 
   const putData = async () => {
     try {
       const response = await fetch(

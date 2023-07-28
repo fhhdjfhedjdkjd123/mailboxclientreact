@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import classes from './Authentication.module.css';
 import { useDispatch } from 'react-redux';
 import { AuthActions } from '../ReduxStore/AuthReducer';
+import { Button } from 'react-bootstrap';
 
 
 
@@ -83,16 +84,15 @@ const Authentication=()=>{
                     <input type="password" placeholder='Password' value={password} onChange={passwordHandler} required/>
                     {!login && <input type="password"placeholder='Confirm Password' value={confirmPassword} onChange={confirmPasswordHandler} required/>}
                 </div>
-                <button type="submit" class="btn btn-secondary" >
+                <Button type="submit" variant="primary" style={{marginLeft:"35%",marginTop:"10px"}}>
                    {login ? 'Login' : 'SignUp'}
-                </button>
+                </Button>
             </form>
         </div>
         <div className={classes.child2}>
-            <button type="button" class="btn btn-secondary" onClick={switchHandler}>
+            <Button type="button" variant="secondary" style={{marginTop:"15px"}} onClick={switchHandler}>
                 {login ? 'create account' : 'Have an Account?Login'}
-            </button>
-            
+            </Button>   
         </div>
         </div>
         )

@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import classes from './ComposeMail.module.css';
-import SideBar from "./SideBar";
+import SideBar from "./Sidebar";
 
 
 const ComposeMail=()=>{
@@ -12,13 +12,35 @@ const ComposeMail=()=>{
     const [receiver,setReceiver]=useState('');
     const [subject,setSubject]=useState('');
 
-    let url='https://mailboxclient-2de1d-default-rtdb.firebaseio.com/';
+    let url='https://mailboxclient-2de1d-default-rtdb.firebaseio.com';
     const sender=localStorage.getItem('email').replace(/['@','.']/g,'')
-    const sender1=localStorage.getItem('email')
+    const sender1=localStorage.getItem('email');
   
-    const dataToSentBox=async()=>{
+      const dataToInbox=async()=>{
+        //const receiver1=receiver.replace(/['@','.']/g,'')
         try {
-            const response=await fetch(`${url}/SentBox/${sender}.json`, {
+            const response=await fetch(`${url}/Inbox/${sender}.json`,{
+                method:'POST',
+                body:JSON.stringify({
+                    from:sender1,
+                    subject:subject,
+                    message:editorState.getCurrentContent().getPlainText(),
+                    read:false
+                }),
+                headers:{
+                    'Content-Type':'application/json'
+                }
+            })
+            localStorage.setItem('receiver',receiver);
+            // const data= await response.json();
+            // console.log(data);
+        } catch (error) {
+            alert(error)
+        }
+      }
+      const dataToSentBox=async()=>{
+        try {
+            const response=await fetch(`${url}/sentBox/${sender}.json`, {
                 method:'POST',
                 body:JSON.stringify({
                     to:receiver,
@@ -36,28 +58,7 @@ const ComposeMail=()=>{
             alert(error)
         }
       }
-      const dataToInbox=async()=>{
-        const receiver1=receiver.replace(/['@','.']/g,'')
-        try {
-            const response=await fetch(`${url}/Inbox/${receiver1}.json`,{
-                method:'POST',
-                body:JSON.stringify({
-                    from:sender1,
-                    subject:subject,
-                    message:editorState.getCurrentContent().getPlainText(),
-                    read:false
-                }),
-                headers:{
-                    'Content-Type':'application/json'
-                }
-            })
-            const data= await response.json();
-            console.log(data);
-        } catch (error) {
-            alert(error)
-        }
-      }
-      
+
     
     const subjectHandler=(e)=>{
         setSubject(e.target.value);
@@ -99,8 +100,9 @@ const ComposeMail=()=>{
                 onEditorStateChange={EditorStateChangeHandler}
               />
             </div>
-            <Button type="button" variant="primary" onClick={submitHandler}>Send</Button>
+            <Button type="button" variant="primary" onClick={submitHandler} style={{marginBottom:"10px"}}>Send</Button>
         </div>
+        
     </div>
   
     )
